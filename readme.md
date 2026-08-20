@@ -1,6 +1,6 @@
 # PerkVector
 
-PerkVector is an evidence-grounded rewards intelligence platform built around a curated catalog of 25 U.S. credit cards. It validates issuer-sourced data, calculates and ranks product value deterministically, retrieves source-linked evidence, and uses Gemini on Vertex AI to generate grounded explanations.
+PerkVector is a hybrid AI credit card recommendation system built around a curated catalog of 25 U.S. credit cards. It combines deterministic value calculations and ranking with retrieval-augmented generation (RAG) and Gemini on Vertex AI to explain recommendations using verified issuer data and official source links.
 
 The project intentionally stays focused on 25 cards. Its goal is transparent data quality and explainable results, not catalog size.
 
