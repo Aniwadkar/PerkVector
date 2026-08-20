@@ -1,4 +1,4 @@
-"""Main entry point for CardIQ system"""
+"""Main entry point for PerkVector."""
 import sys
 from pathlib import Path
 
@@ -10,10 +10,10 @@ from src.agents.orchestrator import Orchestrator
 from src.models.user_input import UserProfile, MonthlySpending
 
 def main():
-    """Run CardIQ recommendation system"""
+    """Run the PerkVector recommendation system."""
     
     print("\n" + "=" * 60)
-    print("Welcome to CardIQ!")
+    print("Welcome to PerkVector!")
     print("AI-Powered Credit Card Recommendation System")
     print("=" * 60 + "\n")
     

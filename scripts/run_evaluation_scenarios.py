@@ -1,4 +1,4 @@
-"""Generate the CardIQ portfolio evaluation artifacts."""
+"""Generate the PerkVector portfolio evaluation artifacts."""
 
 import sys
 from pathlib import Path

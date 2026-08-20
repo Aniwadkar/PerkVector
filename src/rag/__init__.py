@@ -1,4 +1,4 @@
-"""Retrieval components for CardIQ.
+"""Retrieval components for PerkVector.
 
 Legacy FAISS classes are loaded lazily so the production web process does not
 import sentence-transformers unless an offline vector-index script requests it.

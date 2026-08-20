@@ -1,4 +1,4 @@
-# CardIQ Evaluation Scenarios
+# PerkVector Evaluation Scenarios
 
 These fixed profiles demonstrate that the deterministic ranking changes with spending behavior and fee preferences.
 

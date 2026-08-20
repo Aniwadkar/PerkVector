@@ -1,4 +1,4 @@
-"""Request and response schemas for CardIQ HTTP API."""
+"""Request and response schemas for the PerkVector HTTP API."""
 from typing import Optional, List, Dict, Any
 
 from pydantic import BaseModel, Field

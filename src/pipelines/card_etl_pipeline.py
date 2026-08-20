@@ -1,4 +1,4 @@
-"""End-to-end ETL pipeline for the CardIQ starter catalog."""
+"""End-to-end ETL pipeline for the PerkVector catalog."""
 
 from __future__ import annotations
 

@@ -1,4 +1,4 @@
-"""Base agent class for all CardIQ agents - updated for Gemini"""
+"""Base agent class for legacy PerkVector experiments."""
 from abc import ABC, abstractmethod
 from typing import Any
 from src.api.gemini_client import GeminiClient

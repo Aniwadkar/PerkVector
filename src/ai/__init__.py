@@ -1,4 +1,4 @@
-"""AI explanation components for CardIQ."""
+"""AI explanation components for PerkVector."""
 
 from src.ai.gemini_explainer import GeminiRAGExplainer
 

@@ -1,12 +1,12 @@
-# CardIQ
+# PerkVector
 
-CardIQ is a hybrid AI credit card recommendation system built around a curated catalog of 25 U.S. cards. It validates issuer-sourced data, calculates and ranks cards deterministically, retrieves relevant source-linked evidence, and uses Gemini on Vertex AI to generate grounded explanations.
+PerkVector is an evidence-grounded rewards intelligence platform built around a curated catalog of 25 U.S. credit cards. It validates issuer-sourced data, calculates and ranks product value deterministically, retrieves source-linked evidence, and uses Gemini on Vertex AI to generate grounded explanations.
 
 The project intentionally stays focused on 25 cards. Its goal is transparent data quality and explainable results, not catalog size.
 
 ## Live Demo
 
-**[Open the CardIQ web application](https://cardiq-331679307975.us-central1.run.app)**
+**[Open the PerkVector web application](https://perkvector-331679307975.us-central1.run.app)**
 
 The application is hosted on Google Cloud Run. Enter a spending profile to receive three ranked card recommendations with value calculations, grounded explanations, verification dates, and links to official issuer sources.
 
@@ -166,13 +166,13 @@ The production container uses `requirements-web.txt` with the Google Gen AI SDK.
 Deploy from the repository root:
 
 ```powershell
-gcloud run deploy cardiq `
+gcloud run deploy perkvector `
   --source . `
   --project cardiq-anish-2026 `
   --region us-central1 `
   --allow-unauthenticated `
   --service-account cardiq-runtime@cardiq-anish-2026.iam.gserviceaccount.com `
-  --set-env-vars AI_EXPLANATIONS_ENABLED=true,GCP_PROJECT_ID=cardiq-anish-2026,GCP_LOCATION=global,GEMINI_MODEL=gemini-2.5-flash
+  --set-env-vars "AI_EXPLANATIONS_ENABLED=true,GCP_PROJECT_ID=cardiq-anish-2026,GCP_LOCATION=global,GEMINI_MODEL=gemini-2.5-flash"
 ```
 
 Cloud Run supplies the `PORT` environment variable. The included Dockerfile starts FastAPI on that port and packages the processed catalog with the application.

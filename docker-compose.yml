@@ -1,9 +1,9 @@
 services:
-  cardiq-api:
+  perkvector-api:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: cardiq-api
+    container_name: perkvector-api
     ports:
       - "8000:8080"
     env_file:

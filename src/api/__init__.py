@@ -1,3 +1,3 @@
-"""API package for CardIQ."""
+"""API package for PerkVector."""
 
 __all__ = []

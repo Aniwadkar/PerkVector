@@ -1,4 +1,4 @@
-# CardIQ data layers
+# PerkVector data layers
 
 The card catalog follows a simple raw-to-processed pipeline:
 

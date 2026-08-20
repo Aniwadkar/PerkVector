@@ -15,7 +15,7 @@ from src.config import CARDS_JSON_PATH, VECTOR_DB_PATH
 def build_vector_db():
     """Build and save vector database"""
     print("=" * 60)
-    print("Building CardIQ Vector Database")
+    print("Building PerkVector Vector Database")
     print("=" * 60)
     
     # Step 1: Load cards

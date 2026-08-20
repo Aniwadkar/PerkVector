@@ -1,4 +1,4 @@
-"""Run the CardIQ raw-to-processed data pipeline."""
+"""Run the PerkVector raw-to-processed data pipeline."""
 
 import sys
 from pathlib import Path

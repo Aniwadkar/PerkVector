@@ -1,4 +1,4 @@
-"""Repository interfaces for CardIQ data access."""
+"""Repository interfaces for PerkVector data access."""
 
 from src.repositories.card_repository import CardRepository
 

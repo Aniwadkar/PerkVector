@@ -1,4 +1,4 @@
-"""CardIQ FastAPI Web Application"""
+"""PerkVector FastAPI web application."""
 import sys
 import os
 from pathlib import Path
@@ -11,7 +11,7 @@ import uvicorn
 from functools import lru_cache
 
 # Add project root to path so existing src/ imports work
-project_root = Path(__file__).parent
+project_root = Path(__file__).resolve().parent
 sys.path.insert(0, str(project_root))
 
 from src.models.user_input import UserProfile, MonthlySpending
@@ -19,11 +19,13 @@ from src.repositories import CardRepository
 from src.config.settings import AI_EXPLANATIONS_ENABLED
 from src.services import create_recommendation_service
 
-app = FastAPI(title="CardIQ")
+app = FastAPI(title="PerkVector")
 
 # Mount static files and templates
-app.mount("/static", StaticFiles(directory="static"), name="static")
-templates = Jinja2Templates(directory="templates")
+static_directory = project_root / "static"
+static_directory.mkdir(exist_ok=True)
+app.mount("/static", StaticFiles(directory=static_directory), name="static")
+templates = Jinja2Templates(directory=project_root / "templates")
 
 
 @lru_cache(maxsize=1)

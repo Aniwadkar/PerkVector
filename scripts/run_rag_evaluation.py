@@ -1,4 +1,4 @@
-"""Run the CardIQ RAG retrieval benchmark."""
+"""Run the PerkVector RAG retrieval benchmark."""
 import sys
 from pathlib import Path
 

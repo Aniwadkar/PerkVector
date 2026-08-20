@@ -1,4 +1,4 @@
-"""Small, reproducible retrieval benchmark for the CardIQ evidence corpus."""
+"""Small, reproducible retrieval benchmark for the PerkVector evidence corpus."""
 from __future__ import annotations
 
 import json

@@ -1,4 +1,4 @@
-"""Run CardIQ FastAPI server locally."""
+"""Run the PerkVector FastAPI server locally."""
 import uvicorn
 
 

@@ -68,7 +68,7 @@ def test_health_endpoint():
     assert response.status_code == 200
     payload = response.json()
     assert payload["status"] == "ok"
-    assert payload["service"] == "cardiq-api"
+    assert payload["service"] == "perkvector-api"
     assert payload["mock_mode"] is False
 
 

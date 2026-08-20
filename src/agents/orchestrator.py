@@ -31,7 +31,7 @@ class Orchestrator(BaseAgent):
         
         if verbose:
             print("=" * 60)
-            print("CardIQ Recommendation System")
+            print("PerkVector Rewards Intelligence")
             print("=" * 60)
         
         # Step 1: Analyze spending

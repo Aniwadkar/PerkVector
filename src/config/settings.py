@@ -1,4 +1,4 @@
-"""Configuration settings for CardIQ"""
+"""Configuration settings for PerkVector."""
 import os
 from pathlib import Path
 from dotenv import load_dotenv

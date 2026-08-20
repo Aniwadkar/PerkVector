@@ -1,4 +1,4 @@
-"""FastAPI server for CardIQ recommendations."""
+"""FastAPI server for PerkVector recommendations."""
 from functools import lru_cache
 
 from fastapi import FastAPI, HTTPException
@@ -14,7 +14,7 @@ from src.services import RecommendationService, create_recommendation_service
 
 
 app = FastAPI(
-    title="CardIQ API",
+    title="PerkVector API",
     description="AI-powered credit card recommendation service",
     version="1.0.0",
 )
@@ -31,7 +31,7 @@ def health() -> HealthResponse:
     """Health endpoint for readiness/liveness checks."""
     return HealthResponse(
         status="ok",
-        service="cardiq-api",
+        service="perkvector-api",
         mock_mode=False,
         ai_explanations_enabled=AI_EXPLANATIONS_ENABLED,
     )

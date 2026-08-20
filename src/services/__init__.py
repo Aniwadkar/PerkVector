@@ -1,4 +1,4 @@
-"""Application services for CardIQ."""
+"""Application services for PerkVector."""
 
 from src.services.recommendation_service import RecommendationService
 from src.services.factory import create_recommendation_service
