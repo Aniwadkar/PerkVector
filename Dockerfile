@@ -6,7 +6,9 @@ ENV PYTHONUNBUFFERED=1
 WORKDIR /app
 
 COPY requirements-web.txt ./
-RUN pip install --no-cache-dir -r requirements-web.txt
+RUN python -m pip install --no-cache-dir \
+    --index-url https://pypi.org/simple \
+    -r requirements-web.txt
 
 COPY . .
 
