@@ -228,7 +228,7 @@
       max-width: 500px;
     }
 
-    .ai-grounding {
+    .source-notes {
       align-items: center;
       display: flex;
       flex-wrap: wrap;
@@ -236,7 +236,7 @@
       margin-top: 0.8rem;
     }
 
-    .ai-grounding-label {
+    .source-notes-label {
       background: #eceeff;
       color: var(--rank2);
       font-size: 0.7rem;
@@ -481,13 +481,13 @@
 <body>
 
 <header>
-  <div class="logo">Card<span>IQ</span></div>
-  <a href="/" class="back-link">← New Analysis</a>
+  <div class="logo">Perk<span>Vector</span></div>
+  <a href="/" class="back-link">← Update my profile</a>
 </header>
 
 <div class="page-title">
   <p class="eyebrow">Your Results</p>
-  <h1>We found your top {{ recommendations | length }} cards</h1>
+  <h1>Your strongest card matches</h1>
 </div>
 
 <div class="main">
@@ -568,16 +568,12 @@
           <div class="card-name">{{ rec.card_name }}</div>
           <div class="card-issuer">{{ rec.issuer }}</div>
           <div class="card-tagline">{{ rec.why_this_card }}</div>
-          {% if rec.explanation_mode == "rag" %}
-          <div class="ai-grounding">
-            <span class="ai-grounding-label">Gemini RAG explanation</span>
+          {% if rec.evidence %}
+          <div class="source-notes">
+            <span class="source-notes-label">Official details</span>
             {% for evidence in rec.evidence %}
             <a class="evidence-link" href="{{ evidence.source_url }}" target="_blank" rel="noopener noreferrer">{{ evidence.title }}</a>
             {% endfor %}
-          </div>
-          {% elif rec.explanation_mode == "deterministic_fallback" %}
-          <div class="ai-grounding">
-            <span class="ai-grounding-label">Verified fallback explanation</span>
           </div>
           {% endif %}
         </div>
@@ -655,9 +651,9 @@
   </div>
 
   <!-- Portfolio Strategy -->
-  <p class="section-label" style="margin-top:2.5rem">{% if ai_status == "generated" %}Gemini RAG Portfolio Strategy{% else %}Portfolio Strategy{% endif %}</p>
+  <p class="section-label" style="margin-top:2.5rem">Your card strategy</p>
   <div class="portfolio-card">
-    <p class="pt">Portfolio strategy</p>
+    <p class="pt">How to use your matches</p>
     <p>{{ portfolio_strategy }}</p>
   </div>
 

@@ -3,12 +3,14 @@ from fastapi.testclient import TestClient
 from app import app
 
 
-def test_home_page_describes_processed_catalog():
+def test_home_page_uses_customer_facing_perkvector_branding():
     response = TestClient(app).get("/")
 
     assert response.status_code == 200
-    assert "Gemini RAG" in response.text
-    assert "25 verified cards" in response.text
+    assert "Perk<span>Vector</span>" in response.text
+    assert "Find the right credit card" in response.text
+    assert "Gemini" not in response.text
+    assert "25 verified cards" not in response.text
 
 
 def test_results_show_calculation_and_source_provenance():

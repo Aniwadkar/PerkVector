@@ -48,13 +48,13 @@
     }
     .logo span { color: var(--accent); }
 
-    .badge {
-      font-size: 0.75rem;
-      font-weight: 500;
-      background: var(--ink);
-      color: var(--surface);
-      padding: 0.3rem 0.8rem;
-      border-radius: 100px;
+    .header-action {
+      color: var(--ink);
+      font-size: 0.82rem;
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid var(--ink);
+      padding-bottom: 0.15rem;
       letter-spacing: 0.05em;
     }
 
@@ -77,7 +77,7 @@
 
     .hero h1 {
       font-family: 'Syne', sans-serif;
-      font-size: clamp(2.4rem, 5vw, 3.8rem);
+      font-size: clamp(2.4rem, 5vw, 3.6rem);
       font-weight: 800;
       line-height: 1.05;
       letter-spacing: 0;
@@ -381,17 +381,17 @@
 <body>
 
 <header>
-  <div class="logo">Card<span>IQ</span></div>
-  <div class="badge">Gemini RAG | 25 verified cards</div>
+  <div class="logo">Perk<span>Vector</span></div>
+  <a class="header-action" href="#recommendation-form">Find my match</a>
 </header>
 
 <section class="hero">
-  <p class="hero-eyebrow">Hybrid AI recommendation engine</p>
-  <h1>Find your <em>perfect</em> credit card in seconds</h1>
-  <p>Deterministic financial scoring with Gemini explanations grounded in verified issuer data.</p>
+  <p class="hero-eyebrow">Personalized credit card guidance</p>
+  <h1>Find the right credit card for <em>your spending</em></h1>
+  <p>Tell us how you spend each month. We compare rewards, fees, and long-term value to show the cards that fit you best.</p>
 </section>
 
-<div class="form-wrap">
+<div class="form-wrap" id="recommendation-form">
   <form class="form-card" method="POST" action="/recommend" id="mainForm">
 
     <!-- Section 1: Monthly Spending -->
@@ -481,8 +481,8 @@
 
     <!-- Submit -->
     <div class="submit-wrap">
-      <button type="submit" class="submit-btn" id="submitBtn">Analyze My Spending →</button>
-      <p class="submit-note">Math stays deterministic.<br>Gemini explains retrieved evidence.</p>
+      <button type="submit" class="submit-btn" id="submitBtn">See My Best Matches →</button>
+      <p class="submit-note">No sign-up required.<br>Results include value estimates and official card details.</p>
     </div>
 
   </form>
@@ -491,8 +491,8 @@
 <!-- Loading overlay -->
 <div class="loading-overlay" id="loadingOverlay">
   <div class="spinner"></div>
-  <div class="loading-text">Calculating your matches...</div>
-  <div class="loading-sub">Analyzing spending · Evaluating active cards · Ranking projected value</div>
+  <div class="loading-text">Finding your best matches...</div>
+  <div class="loading-sub">Comparing rewards, fees, and benefits for your spending</div>
 </div>
 
 <script>
