@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
-  "generated_at": "2026-07-20T00:01:52.026746+00:00",
-  "source_file": "D:/PROJECTS/CardIQ---Credit-Card-recommender/data/raw/credit_cards_llm_special_features_filled.json",
+  "generated_at": "2026-08-20T19:12:31.960687+00:00",
+  "source_file": "D:/PROJECTS/PerkVector/data/raw/credit_cards_llm_special_features_filled.json",
   "card_count": 25,
   "cards": [
     {
