@@ -1,5 +1,5 @@
 """Pydantic models for agent outputs"""
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
 from typing import List, Dict, Any, Optional
 
 class SpendingAnalysis(BaseModel):
@@ -35,6 +35,13 @@ class OptimizationStrategy(BaseModel):
     pair_with: Optional[str] = None
     avoid_using_for: List[str]
 
+class EvidenceCitation(BaseModel):
+    """Retrieved catalog evidence used by an AI explanation."""
+    evidence_id: str
+    title: str
+    source_url: str
+    source_last_checked: str
+
 class Recommendation(BaseModel):
     """Single card recommendation"""
     rank: int
@@ -49,8 +56,11 @@ class Recommendation(BaseModel):
     watch_out_for: List[str]
     optimization_strategy: OptimizationStrategy
     long_term_projection: Dict[str, str]
+    explanation_mode: str = "deterministic"
+    evidence: List[EvidenceCitation] = Field(default_factory=list)
 
 class RecommendationOutput(BaseModel):
     """Output from Recommendation Synthesizer Agent"""
     recommendations: List[Recommendation]
     portfolio_strategy: str
+    ai_status: str = "disabled"
