@@ -1,6 +1,6 @@
 # CardIQ
 
-CardIQ is a data-backed credit card recommendation system built around a curated catalog of 25 U.S. cards. It validates issuer-sourced card data, produces an analytics-ready dataset, and ranks active consumer cards using deterministic calculations based on a user's monthly spending.
+CardIQ is a hybrid AI credit card recommendation system built around a curated catalog of 25 U.S. cards. It validates issuer-sourced data, calculates and ranks cards deterministically, retrieves relevant source-linked evidence, and uses Gemini on Vertex AI to generate grounded explanations.
 
 The project intentionally stays focused on 25 cards. Its goal is transparent data quality and explainable results, not catalog size.
 
@@ -11,8 +11,10 @@ The project intentionally stays focused on 25 cards. Its goal is transparent dat
 - Validation with blocking errors and reviewable warnings
 - Raw-to-processed ETL with deterministic derived features
 - Explainable first-year and multi-year value calculations
+- Retrieval-augmented generation with Gemini and validated citations
+- Automatic deterministic fallback when Vertex AI is unavailable
 - FastAPI web and JSON interfaces
-- Reproducible evaluation scenarios
+- Reproducible ranking and RAG retrieval evaluations
 - Container deployment to Google Cloud Run
 
 ## Architecture
@@ -31,12 +33,19 @@ Transformation -> data/processed/cards_processed.json
         |
         v
 Repository -> deterministic scoring -> top 3 recommendations
-        |                                  |
-        v                                  v
-FastAPI JSON API                    Web comparison UI
+                                            |
+                                            v
+                              evidence retrieval from catalog
+                                            |
+                                            v
+                              Gemini grounded explanations
+                                            |
+                         +------------------+------------------+
+                         v                                     v
+                 FastAPI JSON API                     Web comparison UI
 ```
 
-The active recommendation path does not ask an LLM to calculate or rank cards. This keeps the financial output reproducible and testable. Experimental agent and RAG modules remain in `src/agents` and `src/rag`, but they do not control the production ranking.
+Gemini never calculates or ranks cards. The deterministic engine remains the source of truth for financial values; the RAG layer only explains those results using retrieved catalog evidence. Citation IDs are validated before AI text is shown, and any Vertex AI failure returns the deterministic explanation instead.
 
 ## Data Layers
 
@@ -77,6 +86,16 @@ python app.py
 
 Open [http://localhost:8000](http://localhost:8000). Use `localhost` or `127.0.0.1` in the browser; `0.0.0.0` is only the server bind address.
 
+AI explanations are disabled locally by default. To use Vertex AI with Application Default Credentials:
+
+```powershell
+$env:AI_EXPLANATIONS_ENABLED="true"
+$env:GCP_PROJECT_ID="cardiq-anish-2026"
+$env:GCP_LOCATION="global"
+$env:GEMINI_MODEL="gemini-2.5-flash"
+python app.py
+```
+
 ## API
 
 Start the JSON API:
@@ -107,29 +126,41 @@ Outputs:
 
 These examples demonstrate that rankings change with spending behavior and fee constraints.
 
+Run the fixed RAG retrieval benchmark:
+
+```powershell
+python scripts/run_rag_evaluation.py
+```
+
+The benchmark currently contains 6 feature and card queries and reports Hit@3 plus official-source coverage in `outputs/evaluation/rag_retrieval_report.json`.
+
 ## Tests
 
 ```powershell
 python -m pytest -q
 ```
 
-The suite covers the API, catalog provenance, processed-data loading, validation, ETL, scoring, recommendation behavior, and evaluation scenarios.
+The suite covers the API, catalog provenance, processed-data loading, validation, ETL, scoring, retrieval, citation validation, AI fallback behavior, and evaluation scenarios.
 
 ## Google Cloud Run
 
-The production container uses `requirements-web.txt`, while `requirements.txt` retains the optional local RAG and experimentation dependencies.
+The production container uses `requirements-web.txt` with the Google Gen AI SDK. The full `requirements.txt` also retains optional legacy FAISS experimentation dependencies.
 
 Deploy from the repository root:
 
 ```powershell
 gcloud run deploy cardiq `
   --source . `
-  --project project-dda6cdb1-a2ba-470b-a47 `
+  --project cardiq-anish-2026 `
   --region us-central1 `
-  --allow-unauthenticated
+  --allow-unauthenticated `
+  --service-account cardiq-runtime@cardiq-anish-2026.iam.gserviceaccount.com `
+  --set-env-vars AI_EXPLANATIONS_ENABLED=true,GCP_PROJECT_ID=cardiq-anish-2026,GCP_LOCATION=global,GEMINI_MODEL=gemini-2.5-flash
 ```
 
 Cloud Run supplies the `PORT` environment variable. The included Dockerfile starts FastAPI on that port and packages the processed catalog with the application.
+
+Live application: [CardIQ on Cloud Run](https://cardiq-331679307975.us-central1.run.app)
 
 ## Important Limitations
 
@@ -138,3 +169,4 @@ Cloud Run supplies the `PORT` environment variable. The included Dockerfile star
 - Annual credits are counted at face value even when a user may not use every credit.
 - Reward caps and issuer-portal restrictions are not yet modeled as fully structured rules.
 - Recommendations are educational estimates, not financial advice.
+- AI text is grounded in the fixed catalog and can only be as current as its verification date.

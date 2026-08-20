@@ -15,6 +15,12 @@ USE_MOCK_MODE = os.getenv("USE_MOCK_MODE", "true").lower() == "true" or not ANTH
 HAIKU_MODEL = os.getenv("HAIKU_MODEL", "claude-3-5-haiku-20241022")
 SONNET_MODEL = os.getenv("SONNET_MODEL", "claude-sonnet-4-20250514")
 
+# Vertex AI / grounded explanation configuration
+AI_EXPLANATIONS_ENABLED = os.getenv("AI_EXPLANATIONS_ENABLED", "false").lower() == "true"
+GCP_PROJECT_ID = os.getenv("GCP_PROJECT_ID", "cardiq-anish-2026")
+GCP_LOCATION = os.getenv("GCP_LOCATION", "global")
+GEMINI_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash")
+
 # Embedding Configuration
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2")
 

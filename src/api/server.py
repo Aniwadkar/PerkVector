@@ -9,7 +9,8 @@ from src.api.schemas import (
     HealthResponse,
 )
 from src.models.user_input import UserProfile, MonthlySpending
-from src.services import RecommendationService
+from src.config.settings import AI_EXPLANATIONS_ENABLED
+from src.services import RecommendationService, create_recommendation_service
 
 
 app = FastAPI(
@@ -22,13 +23,18 @@ app = FastAPI(
 @lru_cache(maxsize=1)
 def get_recommendation_service() -> RecommendationService:
     """Create a single recommendation service for the process."""
-    return RecommendationService()
+    return create_recommendation_service()
 
 
 @app.get("/health", response_model=HealthResponse)
 def health() -> HealthResponse:
     """Health endpoint for readiness/liveness checks."""
-    return HealthResponse(status="ok", service="cardiq-api", mock_mode=False)
+    return HealthResponse(
+        status="ok",
+        service="cardiq-api",
+        mock_mode=False,
+        ai_explanations_enabled=AI_EXPLANATIONS_ENABLED,
+    )
 
 
 @app.post("/recommendations", response_model=RecommendationResponse)

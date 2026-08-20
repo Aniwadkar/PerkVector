@@ -8,6 +8,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from typing import Optional
 import uvicorn
+from functools import lru_cache
 
 # Add project root to path so existing src/ imports work
 project_root = Path(__file__).parent
@@ -15,13 +16,19 @@ sys.path.insert(0, str(project_root))
 
 from src.models.user_input import UserProfile, MonthlySpending
 from src.repositories import CardRepository
-from src.services import RecommendationService
+from src.config.settings import AI_EXPLANATIONS_ENABLED
+from src.services import create_recommendation_service
 
 app = FastAPI(title="CardIQ")
 
 # Mount static files and templates
 app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
+
+
+@lru_cache(maxsize=1)
+def get_recommendation_service():
+    return create_recommendation_service()
 
 
 def get_available_rewards_types():
@@ -77,7 +84,7 @@ async def recommend(
             preferred_rewards_type=rewards_pref,
         )
 
-        recommendation_service = RecommendationService()
+        recommendation_service = get_recommendation_service()
         result = recommendation_service.recommend(user_profile)
 
         total_monthly = dining + groceries + travel + gas + streaming + other
@@ -94,6 +101,7 @@ async def recommend(
         return templates.TemplateResponse(request, "results.html", {
             "recommendations": result.recommendations,
             "portfolio_strategy": result.portfolio_strategy,
+            "ai_status": result.ai_status,
             "spending_data": spending_data,
             "total_monthly": total_monthly,
             "credit_score": credit_score,
@@ -105,7 +113,7 @@ async def recommend(
 
 @app.get("/health")
 async def health():
-    return {"status": "ok"}
+    return {"status": "ok", "ai_explanations_enabled": AI_EXPLANATIONS_ENABLED}
 
 
 if __name__ == "__main__":

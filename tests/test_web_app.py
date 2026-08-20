@@ -7,8 +7,8 @@ def test_home_page_describes_processed_catalog():
     response = TestClient(app).get("/")
 
     assert response.status_code == 200
-    assert "Data-backed" in response.text
-    assert "25 cards" in response.text
+    assert "Gemini RAG" in response.text
+    assert "25 verified cards" in response.text
 
 
 def test_results_show_calculation_and_source_provenance():

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-07-19T18:17:24.342279+00:00",
+  "generated_at": "2026-07-20T00:02:02.143422+00:00",
   "scenario_count": 3,
   "scenarios": [
     {
@@ -65,7 +65,9 @@
             "one_year": "Estimated net value of $2,703.50, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $4,157.00 after two years.",
             "three_years": "Estimated cumulative value of $5,610.50 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 2,
@@ -109,7 +111,9 @@
             "one_year": "Estimated net value of $1,796.00, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $2,654.50 after two years.",
             "three_years": "Estimated cumulative value of $3,513.00 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 3,
@@ -155,7 +159,9 @@
             "one_year": "Estimated net value of $1,706.50, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $2,475.50 after two years.",
             "three_years": "Estimated cumulative value of $3,244.50 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         }
       ],
       "portfolio_strategy": "Use American Express Gold as the primary card, then compare it with Chase Sapphire Preferred Card for categories where the second card has stronger rewards or lower friction."
@@ -221,7 +227,9 @@
             "one_year": "Estimated net value of $2,322.50, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $3,707.50 after two years.",
             "three_years": "Estimated cumulative value of $5,092.50 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 2,
@@ -265,7 +273,9 @@
             "one_year": "Estimated net value of $2,035.00, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $3,320.00 after two years.",
             "three_years": "Estimated cumulative value of $4,605.00 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 3,
@@ -311,7 +321,9 @@
             "one_year": "Estimated net value of $2,027.50, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $3,117.50 after two years.",
             "three_years": "Estimated cumulative value of $4,207.50 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         }
       ],
       "portfolio_strategy": "Use Capital One Venture X as the primary card, then compare it with Wells Fargo Autograph Journey for categories where the second card has stronger rewards or lower friction."
@@ -377,7 +389,9 @@
             "one_year": "Estimated net value of $849.20, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $1,498.40 after two years.",
             "three_years": "Estimated cumulative value of $2,147.60 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 2,
@@ -418,7 +432,9 @@
             "one_year": "Estimated net value of $633.00, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $1,266.00 after two years.",
             "three_years": "Estimated cumulative value of $1,899.00 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         },
         {
           "rank": 3,
@@ -460,7 +476,9 @@
             "one_year": "Estimated net value of $781.50, including first-year bonus value.",
             "two_years": "Estimated cumulative value of $1,263.00 after two years.",
             "three_years": "Estimated cumulative value of $1,744.50 after three years."
-          }
+          },
+          "explanation_mode": "deterministic",
+          "evidence": []
         }
       ],
       "portfolio_strategy": "Use American Express Blue Cash Everyday as the primary card, then compare it with Apple Card for categories where the second card has stronger rewards or lower friction."

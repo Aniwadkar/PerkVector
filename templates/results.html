@@ -228,6 +228,29 @@
       max-width: 500px;
     }
 
+    .ai-grounding {
+      align-items: center;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.35rem 0.55rem;
+      margin-top: 0.8rem;
+    }
+
+    .ai-grounding-label {
+      background: #eceeff;
+      color: var(--rank2);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.25rem 0.45rem;
+    }
+
+    .evidence-link {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
     .card-issuer {
       color: var(--muted);
       font-size: 0.78rem;
@@ -545,6 +568,18 @@
           <div class="card-name">{{ rec.card_name }}</div>
           <div class="card-issuer">{{ rec.issuer }}</div>
           <div class="card-tagline">{{ rec.why_this_card }}</div>
+          {% if rec.explanation_mode == "rag" %}
+          <div class="ai-grounding">
+            <span class="ai-grounding-label">Gemini RAG explanation</span>
+            {% for evidence in rec.evidence %}
+            <a class="evidence-link" href="{{ evidence.source_url }}" target="_blank" rel="noopener noreferrer">{{ evidence.title }}</a>
+            {% endfor %}
+          </div>
+          {% elif rec.explanation_mode == "deterministic_fallback" %}
+          <div class="ai-grounding">
+            <span class="ai-grounding-label">Verified fallback explanation</span>
+          </div>
+          {% endif %}
         </div>
         <div class="value-pill">
           <div class="label">Year 1 Value</div>
@@ -620,7 +655,7 @@
   </div>
 
   <!-- Portfolio Strategy -->
-  <p class="section-label" style="margin-top:2.5rem">Portfolio Strategy</p>
+  <p class="section-label" style="margin-top:2.5rem">{% if ai_status == "generated" %}Gemini RAG Portfolio Strategy{% else %}Portfolio Strategy{% endif %}</p>
   <div class="portfolio-card">
     <p class="pt">Portfolio strategy</p>
     <p>{{ portfolio_strategy }}</p>

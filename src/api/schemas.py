@@ -43,3 +43,4 @@ class HealthResponse(BaseModel):
     status: str
     service: str
     mock_mode: bool
+    ai_explanations_enabled: bool = False
